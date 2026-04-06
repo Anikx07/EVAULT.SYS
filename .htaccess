@@ -1,0 +1,15 @@
+# Root .htaccess
+Options -Indexes
+
+# Block direct access to config.php
+<Files config.php>
+    Order Deny,Allow
+    Deny from all
+</Files>
+
+# Enable RewriteEngine
+RewriteEngine On
+
+# Redirect HTTP to HTTPS (Commonly needed for ezyro/free hosting)
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]

@@ -1,0 +1,13 @@
+# uploads/.htaccess
+Options -Indexes
+
+# Block all PHP file execution inside uploads folder
+<Files *.php>
+    Order Deny,Allow
+    Deny from all
+</Files>
+
+# Prevent script execution even if renamed
+RemoveHandler .php .phtml .php3 .php4 .php5 .php7 .php8
+RemoveType .php .phtml .php3 .php4 .php5 .php7 .php8
+php_flag engine off

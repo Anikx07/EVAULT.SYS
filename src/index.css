@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  
+  /* Cyberpunk Dark Mode */
+  --color-vault-bg-dark: #000000;
+  --color-vault-surface-dark: #0a0a0a;
+  --color-vault-border-dark: #1a1a1a;
+  --color-vault-accent-dark: #00f3ff; /* Neon Cyan */
+  --color-vault-secondary-dark: #ff00ff; /* Neon Magenta */
+  --color-vault-text-dark: #ffffff;
+  --color-vault-text-muted-dark: #666666;
+
+  /* Cyberpunk Light Mode */
+  --color-vault-bg-light: #ffffff;
+  --color-vault-surface-light: #f5f5f5;
+  --color-vault-border-light: #e0e0e0;
+  --color-vault-accent-light: #00b8d4;
+  --color-vault-secondary-light: #d500f9;
+  --color-vault-text-light: #000000;
+  --color-vault-text-muted-light: #888888;
+
+  --color-vault-neon-green: #39ff14;
+  --color-vault-danger: #ff003c;
+}
+
+@layer base {
+  body {
+    @apply font-sans font-normal antialiased transition-colors duration-300;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-sans font-bold tracking-tight uppercase;
+  }
+
+  .dark {
+    @apply bg-vault-bg-dark text-vault-text-dark;
+  }
+
+  .light {
+    @apply bg-vault-bg-light text-vault-text-light;
+  }
+}
+
+@layer utilities {
+  .cyber-glass-dark {
+    @apply bg-vault-surface-dark/90 backdrop-blur-md border border-vault-border-dark;
+  }
+  .cyber-glass-light {
+    @apply bg-vault-surface-light/90 backdrop-blur-md border border-vault-border-light;
+  }
+  .cyber-tile {
+    @apply border border-vault-border-dark transition-all duration-200 hover:border-vault-accent-dark hover:shadow-[0_0_20px_rgba(0,243,255,0.1)];
+  }
+  .cyber-tile-secondary {
+    @apply border border-vault-border-dark transition-all duration-200 hover:border-vault-secondary-dark hover:shadow-[0_0_20px_rgba(255,0,255,0.1)];
+  }
+  .cyber-tile-neon {
+    @apply border border-vault-border-dark transition-all duration-200 hover:border-vault-neon-green hover:shadow-[0_0_20px_rgba(57,255,20,0.1)];
+  }
+  .cyber-text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-vault-accent-dark to-vault-secondary-dark;
+  }
+  .cyber-border-glow {
+    @apply border-vault-accent-dark shadow-[0_0_10px_rgba(0,243,255,0.3)];
+  }
+}
+
+.cyber-btn {
+  @apply relative overflow-hidden transition-all duration-200 active:scale-95 px-6 py-3 font-mono;
+  clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
+}
+
+.cyber-btn-primary {
+  @apply bg-vault-accent-dark text-black font-bold uppercase tracking-widest hover:brightness-110 hover:shadow-[0_0_15px_rgba(0,243,255,0.5)];
+}
+
+.cyber-btn-secondary {
+  @apply border border-vault-accent-dark text-vault-accent-dark font-bold uppercase tracking-widest hover:bg-vault-accent-dark/10 hover:shadow-[0_0_15px_rgba(0,243,255,0.2)];
+}
+
+.scanline {
+  width: 100%;
+  height: 100px;
+  z-index: 10;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 243, 255, 0.1) 50%, rgba(0, 0, 0, 0) 100%);
+  opacity: 0.1;
+  position: absolute;
+  bottom: 100%;
+  animation: scanline 6s linear infinite;
+}
+
+@keyframes scanline {
+  0% { bottom: 100%; }
+  100% { bottom: -100px; }
+}
